@@ -1,0 +1,36 @@
+#!/bin/bash
+
+usage()
+{
+	echo "Usage: $0"
+	echo "$0 [timeout second]"
+	exit 1
+}
+
+if [ -z "$1" ]; then
+	usage
+fi
+
+first_time=true;
+
+f()
+{
+	while read -t $1 line
+	do
+		echo $line
+		first_time=true;
+	done
+	if [ $first_time == true ]; then
+		echo "-----------------------------------------------------------------------------------------------"
+		echo ""
+		echo ""
+		echo ""
+		echo "-----------------------------------------------------------------------------------------------"
+		first_time=false;
+	fi
+}
+
+while true
+do
+	f $1
+done
